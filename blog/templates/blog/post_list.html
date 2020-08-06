@@ -7,11 +7,8 @@
 <body>
 <ul>
     {% for post in object_list %}
-    <li>by: {{ post.user }}</li>
+    <li>by: <a href="{% url 'detail' post.pk %}">{{ post.user }}</a></li>
     <li>{{ post.title }}</li>
-    <li>{{ post.sub_title }}</li>
-    <li>{{ post.content }}</li>
-    <li><a href="{% url 'update' post.id %}">Update</a>  <a href="{% url 'delete' post.id %}">Delete</a></li>
     <br/>
     {% endfor %}
 </ul>

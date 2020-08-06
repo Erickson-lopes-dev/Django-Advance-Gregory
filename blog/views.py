@@ -1,7 +1,6 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import TemplateView, View, ListView
-
+from django.views.generic.detail import DetailView
 from blog.models import Post
 
 
@@ -58,3 +57,10 @@ class PostList(ListView):
     model = Post
 
 
+class PostDetail(DetailView):
+    model = Post
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['now'] = 'um nome para exibir'
+        return context
