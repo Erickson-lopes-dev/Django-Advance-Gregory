@@ -8,6 +8,4 @@ class Post(models.Model):
     content = models.TextField()
     user = models.ForeignKey(User, on_delete=models.PROTECT)
 
-    def __unicode__(self):
-        return self.title
 

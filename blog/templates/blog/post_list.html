@@ -7,7 +7,7 @@
 <body>
 <ul>
     {% for post in object_list %}
-    <li>by: <a href="{% url 'detail' post.pk %}">{{ post.user }}</a></li>
+    <li>by: <a href="{% url 'detail_post' post.pk %}">{{ post.user }}</a></li>
     <li>{{ post.title }}</li>
     <br/>
     {% endfor %}

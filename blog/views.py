@@ -1,6 +1,9 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect, reverse
-from django.views.generic import TemplateView, View, ListView
-from django.views.generic.detail import DetailView
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView, View, ListView, CreateView, DetailView, UpdateView, DeleteView
+# from django.views.generic.detail import
 from blog.models import Post
 
 
@@ -64,3 +67,30 @@ class PostDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context['now'] = 'um nome para exibir'
         return context
+
+
+class PostCreate(LoginRequiredMixin, CreateView):
+    model = Post
+    fields = ['title', 'sub_title', 'content']
+    success_url = reverse_lazy('list_post')
+
+    # colocando o usuario que esta logado dentro do usuario
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class PostUpdate(LoginRequiredMixin, UpdateView):
+    model = Post
+    fields = ['title', 'sub_title', 'content']
+    success_url = reverse_lazy('list_post')
+
+    # colocando o usuario que esta logado dentro do usuario
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+
+
+class PostDelete(DeleteView):
+    model = Post
+    success_url = reverse_lazy('list_post')
