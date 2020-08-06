@@ -1,5 +1,6 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, View
 
 from blog.models import Post
 
@@ -41,5 +42,14 @@ def delete_post(request, pk):
     return redirect(reverse('list'))
 
 
-class HomePageView(TemplateView, ):
+class HomePageView(TemplateView):
     template_name = 'blog/home.html'
+
+
+class MyView(View):
+    def get(self, request):
+        return render(request, 'blog/home.html')
+
+    # def get(self, request):
+    #     return render(request, 'blog/home.html')
+
