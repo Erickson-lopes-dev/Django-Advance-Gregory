@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, reverse
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView, View, ListView
 
 from blog.models import Post
 
@@ -43,13 +43,18 @@ def delete_post(request, pk):
 
 
 class HomePageView(TemplateView):
-    template_name = 'blog/home.html'
+    template_name = 'blog/post_list.html'
 
 
 class MyView(View):
     def get(self, request):
-        return render(request, 'blog/home.html')
+        return render(request, 'blog/post_list.html')
 
-    # def get(self, request):
-    #     return render(request, 'blog/home.html')
+    # def post(self, request):
+    #     return render(request, 'blog/post_list.html')
+
+
+class PostList(ListView):
+    model = Post
+
 

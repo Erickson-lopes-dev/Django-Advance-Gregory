@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    {% for post in object_list %}
+    <li>by: {{ post.user }}</li>
+    <li>{{ post.title }}</li>
+    <li>{{ post.sub_title }}</li>
+    <li>{{ post.content }}</li>
+    <li><a href="{% url 'update' post.id %}">Update</a>  <a href="{% url 'delete' post.id %}">Delete</a></li>
+    <br/>
+    {% endfor %}
+</ul>
+</body>
+</html>
