@@ -93,4 +93,8 @@ class PostUpdate(LoginRequiredMixin, UpdateView):
 
 class PostDelete(DeleteView):
     model = Post
-    success_url = reverse_lazy('list_post')
+    # success_url = reverse_lazy('list_post')
+
+    def get_success_url(self):
+        # pode salvar informações como o a informação que vai ser excluida etc ..
+        reverse_lazy('list_post')
