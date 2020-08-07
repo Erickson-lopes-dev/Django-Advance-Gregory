@@ -8,9 +8,7 @@
 <form action="" method="post">
     {% csrf_token %}
 <!--    {{ form.as_p }}-->
-    {{ form.title }}
-    {{ form.sub_title }}
-    {{ form.content }}
+    {% include 'form.html' %}
     <input type="submit" value="Save">
 
 </form>
